@@ -1,0 +1,8 @@
+Hi, 
+
+Following the presentation on word embeddings, I have also put the same as a tutorial on a youtube channel here : https://www.youtube.com/watch?v=Y_ox2YCwsLI
+
+Please feel free to share it to your colleagues who may be interested in the topic.
+
+Thanks,
+Bikash Gyawali

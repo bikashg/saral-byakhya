@@ -1,0 +1,33 @@
+https://www.youtube.com/watch?v=Y_ox2YCwsLI
+
+सरल व्याख्या
+
+Word Embeddings को प्रयोग कसरी गर्ने -- एक उदाहरण NLP मा
+
+
+Word Embeddings को प्रयोग कसरी गर्ने -- एक उदाहरण NLP मा
+
+यस भिडियोमा हामी "Word Embeddings" को सरल परिभाषा दिदै त्यसको "NLP" मा ब्यवहारीक प्रयोग कसरी गर्ने भन्ने प्रस्तुती गर्नेछौ ।
+
+यो सामाग्री "2ND NATIONAL WORKSHOP ON MACHINE LEARNING & DATA SCIENCE" (http://www.mldsn.org/event) मा पनि प्रस्तुत गरिएको थियो।
+
+
+Source Code : https://github.com/bikashg/saral-byakhya/tree/master/Word%20Embeddings
+
+Linked Resources : 
+
+Word Vectors image : https://www.adityathakker.com/introduction-to-word2vec-how-it-works/
+
+Cosine Similarity : 
+Wiki Page - https://en.wikipedia.org/wiki/Cosine_similarity
+Source Code - https://skipperkongen.dk/2018/09/19/cosine-similarity-in-python/
+
+Word2Vec demo : http://bionlp-www.utu.fi/wv_demo/
+
+BERT :
+Source Code : https://github.com/google-research/bert
+Embeddings : https://github.com/imgarylai/bert-embedding
+
+SCIBERT : https://github.com/allenai/scibert
+BioBERT : https://github.com/dmis-lab/biobert
+ClinicalBERT : https://github.com/kexinhuang12345/clinicalBERT
