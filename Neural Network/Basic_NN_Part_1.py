@@ -10,26 +10,19 @@
 #    
 #    # Date: 29 April 2020
 
-# ## Topics Covered : Gradient Descent
+# ## Topics Covered: Gradient Descent
+
+# This Page: https://github.com/bikashg/saral-byakhya/blob/master/Neural%20Network/Basic_NN_Part_1.ipynb
+# 
+# Video Description: 
 
 # ### Section 1: A working Example: Learning to Predict
-Input(X) Output(Y)
- -2         -14
- -4         -28
- -8         -56
- -16        -112
- 2         14
- 4         28
- 8         56
- 16        112
- 
- 32        ??
- 
- We are looking for a prediction of 224. The weight needed to transform x to y is 7.
+
 # In[1]:
 
 
 import numpy as np
+import tabletext
 
 
 # In[2]:
@@ -40,7 +33,6 @@ Y = np.array([-14, -28, -56, -112, 14, 28, 56, 112])
 
 test_data =  np.array([-32])
 
-import tabletext
 data1 = [["Example Number","X","Y"],
         ["i=1",-2,-14],
         ["i=2",-4,-28],
@@ -54,6 +46,8 @@ data1 = [["Example Number","X","Y"],
         ]
 print(tabletext.to_text(data1))
 
+
+# #### We are looking for a prediction of 224. The weight needed to transform x to y is 7.
 
 # In[3]:
 
@@ -147,7 +141,7 @@ import math
 def calculate_error(prediction,target):
     error = []
     for p,tgt in zip(prediction,target):
-        err = (tgt-p)**2       # Question: Why do we need to square and then square root ?
+        err = (tgt-p)**2       # Question: Why do we need to square?
         error.append(err)
     return error
 
