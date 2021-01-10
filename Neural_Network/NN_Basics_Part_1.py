@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # The basics of Neural Network: Hand-holding guide with Working Examples
+# # Neural Network Basics: Hand-holding guide with Working Examples
 # 
 #    # PART - 1
 # 
 # 
 #    # Author: Bikash Gyawali
 #    
-#    # Date: 29 April 2020
+#    # Date: 10 January 2021
 
 # ## Topics Covered: Gradient Descent
 
@@ -28,16 +28,16 @@ import tabletext
 # In[2]:
 
 
-X = np.array([-2, -4, -8, -16, 2, 4, 8, 16])
-Y = np.array([-14, -28, -56, -112, 14, 28, 56, 112])
+X = np.array([-16, -8, -4, -2, 2, 4, 8, 16])
+Y = np.array([-112, -56, -28, -14, 14, 28, 56, 112])
 
-test_data =  np.array([-32])
+test_data =  np.array([32])
 
 data1 = [["Example Number","X","Y"],
-        ["i=1",-2,-14],
-        ["i=2",-4,-28],
-        ["i=3",-8,-56],
-        ["i=4",-16,-112],
+        ["i=1",-16,-112],
+        ["i=2",-8,-56],
+        ["i=3",-4,-28],
+        ["i=4",-2,-14],
         ["i=5",2,14],
         ["i=6",4,28],
         ["i=7",8,56],
@@ -52,7 +52,7 @@ print(tabletext.to_text(data1))
 # In[3]:
 
 
-get_ipython().run_cell_magic('latex', '', 'In general, $X$ referes to the matrix of the $x$ component for all examples and $x_i$ referes to the $x$ component of the $i^{th}$ example.\n\nLikewise for $Y$ and $y_i$.')
+get_ipython().run_cell_magic('latex', '', 'In general, $X$ referes to the matrix of the $x$ component for all examples and $X_i$ referes to the $x$ component of the $i^{th}$ example.\n\nLikewise for $Y$ and $y_i$.')
 
 
 # In[4]:
@@ -89,8 +89,8 @@ random_weights
 # In[8]:
 
 
-def get_prediction(x,weight):
-    return x*weight
+def get_prediction(X, weight):
+    return X*weight
 
 
 # In[9]:
@@ -105,10 +105,16 @@ r_predictions
 # In[10]:
 
 
+X[4:],Y
+
+
+# In[11]:
+
+
 import matplotlib.pyplot as plt
 
 fig=plt.figure(figsize=(14,6))
-ax=fig.add_axes([0,0,1,1])
+ax=fig.add_subplot(111)
 
 ax.scatter(X, Y, color='g', s=124)
 ax.plot(X, Y, linestyle='solid', color='g', label="True Weight")
@@ -121,21 +127,21 @@ for pred,col in zip(r_predictions,r_pred_colors):
 
 plt.legend(loc="upper left")
     
-ax.set_xlabel('x')
-ax.set_ylabel('y')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
 ax.set_title('Visualising Error')
 plt.show()
 
 
 # ### Section 3: Can we quantify the error?  -- Calculate Error and Loss
 
-# In[11]:
+# In[12]:
 
 
 import math
 
 
-# In[12]:
+# In[13]:
 
 
 def calculate_error(prediction,target):
@@ -146,7 +152,7 @@ def calculate_error(prediction,target):
     return error
 
 
-# In[13]:
+# In[14]:
 
 
 r_errors = []
@@ -155,7 +161,7 @@ for pred in r_predictions:
 r_errors
 
 
-# In[14]:
+# In[15]:
 
 
 fig2=plt.figure(figsize=(14,6))
@@ -195,7 +201,7 @@ ax2.set_title('Error obtained for different inputs using different weights for t
 plt.show()
 
 
-# In[15]:
+# In[16]:
 
 
 def calculate_loss(prediction,target):
@@ -204,7 +210,7 @@ def calculate_loss(prediction,target):
     return avg_loss
 
 
-# In[16]:
+# In[17]:
 
 
 r_losses = []
@@ -213,14 +219,14 @@ for pred in r_predictions:
 r_losses
 
 
-# In[17]:
+# In[18]:
 
 
 data2 = [["Example Number","X","Y", "Prediction", "Error"],
-        ["i=1",-2,-14,-16, 4],
-        ["i=2",-4,-28,-32, 16],
-        ["i=3",-8,-56,-64, 64],
-        ["i=4",-16,-112,-128, 256],
+        ["i=1",-16,-112,-128, 256],
+        ["i=2",-8,-56,-64, 64],
+        ["i=3",-4,-28,-32, 16],
+        ["i=4",-2,-14,-16, 4],
         ["i=5",2,14,16, 4],
         ["i=6",4,28,32, 16],
         ["i=7",8,56,64, 64],
@@ -231,7 +237,7 @@ print(tabletext.to_text(data2))
 print("Loss = 85.0")
 
 
-# In[18]:
+# In[19]:
 
 
 get_ipython().run_cell_magic('latex', '', '$Error_{i,k} = (y_i - (w_k * x_i))^2\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \n  Loss_k = \\frac{1}{n}\\sum_{i=1}^{n} Error_{i,k} $')
@@ -239,7 +245,7 @@ get_ipython().run_cell_magic('latex', '', '$Error_{i,k} = (y_i - (w_k * x_i))^2\
 
 # ### Section 4: Let the machine do the guessing  -- Gradient Descent
 
-# In[19]:
+# In[20]:
 
 
 fig3=plt.figure(figsize=(14,6))
@@ -266,7 +272,7 @@ plt.xticks(np.arange(min(random_weights), max(random_weights)+1, 1.0))
 plt.show()
 
 
-# In[20]:
+# In[21]:
 
 
 data3 = [["W1","L1", "W2","L2", "dW = W2-W1","dL = L2-L1", "gradient = dL/dW"],
@@ -279,7 +285,7 @@ data3 = [["W1","L1", "W2","L2", "dW = W2-W1","dL = L2-L1", "gradient = dL/dW"],
 print(tabletext.to_text(data3))
 
 
-# In[21]:
+# In[22]:
 
 
 gradients = {}
@@ -292,7 +298,7 @@ for idx in range(len(r_losses)-1):
 print (gradients)
 
 
-# In[22]:
+# In[23]:
 
 
 alpha = 0.001
@@ -301,19 +307,19 @@ def get_better_weight_numerical(input_weight, alpha=1):
     return out_weight
 
 
-# In[23]:
+# In[24]:
 
 
 get_better_weight_numerical(8)
 
 
-# In[24]:
+# In[25]:
 
 
 get_better_weight_numerical(8, alpha)
 
 
-# In[25]:
+# In[26]:
 
 
 for idx in range(len(random_weights)-1):
@@ -322,13 +328,13 @@ for idx in range(len(random_weights)-1):
     print("Better weight estimate for "+str(org_wgt)+" is "+str(new_wgt))
 
 
-# In[26]:
+# In[27]:
 
 
 get_ipython().run_cell_magic('latex', '', 'The derivative of the loss function, $\\frac{d}{dw_k}Loss_k$ = $\\frac{2}{n}\\sum_{i=1}^{n} ((w_k*x_i-y_i)*x_i)$. Check at https://www.derivative-calculator.net/#expr=%28y-wx%29%5E2&diffvar=w&showsteps=1')
 
 
-# In[27]:
+# In[28]:
 
 
 def gradient_fn(input_weight):
@@ -349,7 +355,7 @@ Cross Entropy Loss
 See https://medium.com/udacity-pytorch-challengers/a-brief-overview-of-loss-functions-in-pytorch-c0ddb78068f7 to read on loss functions implemented on pytorch.
 # ### Section 5: Training
 
-# In[28]:
+# In[29]:
 
 
 # Iterate until the loss is minimised
@@ -371,7 +377,7 @@ while updated_loss>0.5:
 # or you could also iterate for a fixed number of epochs -- because you wouldn't know what the ideal threshold for updated_loss is! Also possible to do early stopping -- keep updating the weights (i.e. train) as long as the loss on validation data keeps on decreasing.
 
 
-# In[29]:
+# In[30]:
 
 
 prediction = updated_weight * test_data
@@ -385,7 +391,7 @@ Ans:
     Hence the gradient descent technique.
 # ### (Mini)batch gradient descent; Stochastic gradient descent; online gradient descent
 
-# In[30]:
+# In[31]:
 
 
 def get_better_weight_algebraic_stochastic(input_weight, alpha=1):
@@ -404,10 +410,17 @@ print("Start weight = "+str(start_weight)+", start loss = "+str(start_loss))
 
 updated_weight = start_weight
 updated_loss = start_loss
-while updated_loss>0.5:
+while updated_loss>0.15:
     updated_weight = get_better_weight_algebraic_stochastic(updated_weight, alpha)
     updated_loss = calculate_loss(get_prediction(X,updated_weight),Y)
     print("Updated weight = "+str(updated_weight)+", updated loss = "+str(updated_loss))
+
+
+# In[33]:
+
+
+prediction = updated_weight * test_data
+prediction
 
 
 # ## HW: 
